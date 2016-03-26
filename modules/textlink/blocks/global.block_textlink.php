@@ -26,8 +26,9 @@ if (! nv_function_exists('nv_block_textlink')) {
             ->order('weight');
 
         $result = $db->query($db->sql());
+		$count = $result->rowCount();
 
-        if ($num = $result->rowCount() > 0) {
+        if ($count>0) {
             if (file_exists(NV_ROOTDIR . '/themes/' . $global_config['module_theme']  . '/modules/' . $site_mods[$module]['module_file'] . '/block_textlink.tpl')) {
                 $block_theme = $global_config['module_theme'] ;
             } else {
@@ -40,7 +41,7 @@ if (! nv_function_exists('nv_block_textlink')) {
 			$i=0;
             while ($row = $result->fetch()) {
             	$xtpl->assign('ROW', $row);
-				if($i<$num){
+				if($i<$count-1){
 					$xtpl->parse('main.loop.space');
 				}
                 $xtpl->parse('main.loop');

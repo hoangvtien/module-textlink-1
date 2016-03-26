@@ -4,7 +4,7 @@
  * @Project NUKEVIET 4.x
  * @Author VINADES.,JSC (contact@vinades.vn)
  * @Copyright (C) 2016 VINADES.,JSC. All rights reserved
- * @License: Not free read more http://nukeviet.vn/vi/store/modules/nvtools/
+ * @License: GNU/GPL version 2 or any later version
  * @Createdate Sat, 26 Mar 2016 00:39:30 GMT
  */
 

@@ -1,8 +1,8 @@
 <!-- BEGIN: main -->
-
-<!-- BEGIN: loop -->
-<a href="{ROW.a_url}" title="{ROW.a_title}">{ROW.a_title}</a>
-<!-- BEGIN: space --> | <!-- BEGIN: space -->
-<!-- END: loop -->
-
+<div class="textlink">
+	<!-- BEGIN: loop -->
+	<a href="{ROW.a_url}" title="{ROW.a_title}">{ROW.a_title}</a>
+	<!-- BEGIN: space --> | <!-- END: space -->
+	<!-- END: loop -->
+</div>
 <!-- END: main -->

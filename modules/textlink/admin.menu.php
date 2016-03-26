@@ -10,4 +10,6 @@
 
 if ( ! defined( 'NV_ADMIN' ) ) die( 'Stop!!!' );
 
-$submenu['config'] = $lang_module['config'];
+$submenu['content'] = $lang_module['addtextlink'];
+$submenu['customer'] = $lang_module['customer'];
+//$submenu['config'] = $lang_module['config'];

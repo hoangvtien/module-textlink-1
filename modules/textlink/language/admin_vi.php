@@ -19,6 +19,7 @@ $lang_translator['langtype'] = 'lang_module';
 $lang_module['main'] = 'Trang chính';
 $lang_module['config'] = 'Cấu hình';
 $lang_module['save'] = 'Lưu lại';
+$lang_module['month'] = 'tháng';
 
 $lang_module['customer'] = 'Khách hàng';
 $lang_module['add'] = 'Thêm mới';

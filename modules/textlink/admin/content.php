@@ -10,6 +10,25 @@
 
 if ( ! defined( 'NV_IS_FILE_ADMIN' ) ) die( 'Stop!!!' );
 
+if($nv_Request->isset_request('get_time_end', 'post')){
+	$begin_time = $nv_Request->get_title('begin_time', 'post', '');
+	$month = $nv_Request->get_int('month', 'post', 0);
+	$end_time = '';
+
+	if(empty($begin_time) or empty($month)) die('NO');
+
+	if( preg_match( '/^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/', $begin_time, $m ) )
+	{
+		$begin_time = mktime( 0, 0, 0, $m[2], $m[1], $m[3] );
+		$end_time = $begin_time + (30 * $month * 86400);
+		die('OK_' . nv_date('d/m/Y', $end_time));
+	}
+	else
+	{
+		die('NO');
+	}
+}
+
 $row = array();
 $error = array();
 $row['id'] = $nv_Request->get_int( 'id', 'post,get', 0 );
@@ -164,6 +183,11 @@ foreach( $array_customer_id_textlink as $value )
 		'selected' => ($value['id'] == $row['customer_id']) ? ' selected="selected"' : ''
 	) );
 	$xtpl->parse( 'main.select_customer_id' );
+}
+
+for($i=1; $i<=12; $i++){
+	$xtpl->assign( 'MONTH', $i );
+	$xtpl->parse( 'main.month' );
 }
 
 if( ! empty( $error ) )

@@ -61,5 +61,19 @@
 	</div>
 </form>
 <!-- END: view -->
-
+<script>
+    function nv_change_weight(id) {
+        var nv_timer = nv_settimeout_disable('id_weight_' + id, 5000);
+        var new_vid = $('#id_weight_' + id).val();
+        $.post(script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=main&nocache=' + new Date().getTime(), 'ajax_action=1&id=' + id + '&new_vid=' + new_vid, function(res) {
+            var r_split = res.split('_');
+            if (r_split[0] != 'OK') {
+                alert(nv_is_change_act_confirm[2]);
+            }
+            window.location.href = script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=main';
+            return;
+        });
+        return;
+    }
+</script>
 <!-- END: main -->

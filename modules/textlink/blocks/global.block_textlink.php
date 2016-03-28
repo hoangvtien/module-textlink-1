@@ -40,6 +40,7 @@ if (! nv_function_exists('nv_block_textlink')) {
 
 			$i=0;
             while ($row = $result->fetch()) {
+            	$row['a_title_des'] = !empty($row['a_title_des']) ? $row['a_title_des'] : $row['a_title'];
             	$xtpl->assign('ROW', $row);
 				if($i<$count-1){
 					$xtpl->parse('main.loop.space');

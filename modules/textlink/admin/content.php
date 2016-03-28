@@ -49,6 +49,7 @@ else
 
 	$row['id'] = 0;
 	$row['a_title'] = '';
+	$row['a_title_des'] = '';
 	$row['a_url'] = '';
 	$row['customer_id'] = 0;
 	$row['begin_time'] = NV_CURRENTTIME;
@@ -58,6 +59,7 @@ else
 if ( $nv_Request->isset_request( 'submit', 'post' ) )
 {
 	$row['a_title'] = $nv_Request->get_title( 'a_title', 'post', '' );
+	$row['a_title_des'] = $nv_Request->get_title( 'a_title_des', 'post', '' );
 	$row['a_url'] = $nv_Request->get_title( 'a_url', 'post', '' );
 	$row['customer_id'] = $nv_Request->get_int( 'customer_id', 'post', 0 );
 	if( preg_match( '/^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/', $nv_Request->get_string( 'begin_time', 'post' ), $m ) )
@@ -110,7 +112,7 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 		{
 			if( empty( $row['id'] ) )
 			{
-				$stmt = $db->prepare( 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . ' (a_title, a_url, customer_id, begin_time, end_time, weight) VALUES (:a_title, :a_url, :customer_id, :begin_time, :end_time, :weight)' );
+				$stmt = $db->prepare( 'INSERT INTO ' . NV_PREFIXLANG . '_' . $module_data . ' (a_title, a_title_des, a_url, customer_id, begin_time, end_time, weight) VALUES (:a_title, :a_title_des, :a_url, :customer_id, :begin_time, :end_time, :weight)' );
 
 				$weight = $db->query( 'SELECT max(weight) FROM ' . NV_PREFIXLANG . '_' . $module_data . '' )->fetchColumn();
 				$weight = intval( $weight ) + 1;
@@ -118,9 +120,10 @@ if ( $nv_Request->isset_request( 'submit', 'post' ) )
 			}
 			else
 			{
-				$stmt = $db->prepare( 'UPDATE ' . NV_PREFIXLANG . '_' . $module_data . ' SET a_title = :a_title, a_url = :a_url, customer_id = :customer_id, begin_time = :begin_time, end_time = :end_time WHERE id=' . $row['id'] );
+				$stmt = $db->prepare( 'UPDATE ' . NV_PREFIXLANG . '_' . $module_data . ' SET a_title = :a_title, a_title_des = :a_title_des, a_url = :a_url, customer_id = :customer_id, begin_time = :begin_time, end_time = :end_time WHERE id=' . $row['id'] );
 			}
 			$stmt->bindParam( ':a_title', $row['a_title'], PDO::PARAM_STR );
+			$stmt->bindParam( ':a_title_des', $row['a_title_des'], PDO::PARAM_STR );
 			$stmt->bindParam( ':a_url', $row['a_url'], PDO::PARAM_STR );
 			$stmt->bindParam( ':customer_id', $row['customer_id'], PDO::PARAM_INT );
 			$stmt->bindParam( ':begin_time', $row['begin_time'], PDO::PARAM_INT );

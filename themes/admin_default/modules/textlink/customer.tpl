@@ -107,8 +107,6 @@
 		}
 		return;
 	}
-
-
 //]]>
 </script>
 <!-- END: main -->

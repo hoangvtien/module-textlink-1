@@ -28,13 +28,23 @@
 			<input class="form-control" type="text" name="a_title" value="{ROW.a_title}" required="required" oninvalid="setCustomValidity( nv_required )" oninput="setCustomValidity('')" />
 		</div>
 	</div>
-    <div class="form-group">
-        <label class="col-sm-5 col-md-4 control-label"><strong>{LANG.a_title_des}</strong></label>
-        <div class="col-sm-19 col-md-20">
-            <input class="form-control" type="text" name="a_title_des" value="{ROW.a_title_des}" />
-            <em class="help-block">{LANG.a_title_des_note}</em>
-        </div>
-    </div>
+	<div class="form-group">
+		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.attr_title_use}</strong></label>
+		<div class="col-sm-19 col-md-20">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6">
+					<select class="form-control" name="attr_title_use">
+						<!-- BEGIN: attr_title_use -->
+						<option value="{OPTION.index}" {OPTION.selected}>{OPTION.value}</option>
+						<!-- END: attr_title_use -->
+					</select>
+				</div>
+				<div class="col-xs-12 col-sm-18">
+					<input class="form-control" type="text" name="attr_title_content" value="{ROW.attr_title_content}" id="attr_title_content" placeholder="{LANG.attr_title_content}" <!-- BEGIN: disabled -->disabled<!-- END: disabled --> />
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="form-group">
 		<label class="col-sm-5 col-md-4 control-label"><strong>{LANG.a_url}</strong> <span class="red">(*)</span></label>
 		<div class="col-sm-19 col-md-20">
@@ -93,6 +103,14 @@
 		changeMonth : true,
 		changeYear : true,
 		showOtherMonths : true,
+	});
+	
+	$('select[name="attr_title_use"]').change(function(){
+		if($(this).val() == 0){
+			$('#attr_title_content').prop('disabled', true);
+		}else{
+			$('#attr_title_content').prop('disabled', false);
+		}
 	});
 
 	$('#month').change(function(){

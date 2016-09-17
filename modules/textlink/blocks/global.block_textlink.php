@@ -40,10 +40,15 @@ if (! nv_function_exists('nv_block_textlink')) {
 
 			$i=0;
             while ($row = $result->fetch()) {
-            	$row['a_title_des'] = !empty($row['a_title_des']) ? $row['a_title_des'] : $row['a_title'];
+                if($row['attr_title_use']){
+                    $row['attr_title_content'] = !empty($row['attr_title_content']) ? $row['attr_title_content'] : $row['a_title'];
+                }
             	$xtpl->assign('ROW', $row);
 				if($i<$count-1){
 					$xtpl->parse('main.loop.space');
+				}
+				if($row['attr_title_use']){
+				    $xtpl->parse('main.loop.attr_title');
 				}
                 $xtpl->parse('main.loop');
 				$i++;

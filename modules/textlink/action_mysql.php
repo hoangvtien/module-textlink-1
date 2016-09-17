@@ -17,9 +17,10 @@ $sql_drop_module[] = "DROP TABLE IF EXISTS " . $db_config['prefix'] . "_" . $lan
 $sql_create_module = $sql_drop_module;
 $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "(
   id mediumint(8) NOT NULL AUTO_INCREMENT,
-  a_title varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Tiêu đề liên kết',
-  a_title_des varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Mô tả liên kết',
-  a_url varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Địa chỉ liên kết',
+  a_title varchar(255) NOT NULL COMMENT 'Tiêu đề liên kết',
+  a_url varchar(255) NOT NULL COMMENT 'Địa chỉ liên kết',
+  attr_title_use tinyint(1) unsigned NOT NULL DEFAULT '1',
+  attr_title_content varchar(255) NOT NULL,
   customer_id smallint(4) unsigned NOT NULL COMMENT 'ID khách hàng',
   begin_time int(11) unsigned NOT NULL COMMENT 'Thời gian bắt đầu',
   end_time int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'Thời gian kết thúc',
@@ -30,8 +31,8 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
 
 $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_customer(
   id smallint(4) NOT NULL AUTO_INCREMENT,
-  name varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  phone varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  email varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  name varchar(255) NOT NULL,
+  phone varchar(20) NOT NULL,
+  email varchar(100) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=MyISAM";
